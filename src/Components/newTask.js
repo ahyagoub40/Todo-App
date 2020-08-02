@@ -1,10 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import './styles.scss'
-export default function New() {
+import { addTask } from '../Store/actions'
+function New({ dispatch }) {
   return (
-    <form className="input">
+    <div>
       <input type="text" name="new task" value="Enter a new task" />
-      <img src="images/add.png" alt="add" widht="20px" height="20px" />
-    </form>
+      <img src="images/add.png" alt="add" widht="20px" height="20px"
+        onClick={(e) => dispatch(addTask(e.target.value))} />
+    </div>
   )
 }
+
+export default connect()(New)

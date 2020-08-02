@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.scss';
 import NewTask from './Components/newTask'
-import Task from './Components/Task'
+import TaskList from './Components/TaskLists'
 function App() {
   return (
     <div>
       <div className="App">
         <NewTask />
-        <Task />
+        <TaskList />
       </div>
     </div>
   );
