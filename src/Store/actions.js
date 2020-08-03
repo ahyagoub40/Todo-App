@@ -1,12 +1,22 @@
-let currentId = 0
-export const addTask = function (text) {
-  return { type: 'ADD_TASK', id: currentId++, text }
-}
+let nextTodoId = 0
+export const addTodo = text => ({
+  type: 'ADD_TODO',
+  id: nextTodoId++,
+  text
+})
 
-export const deletTask = function (id) {
-  return { type: 'DELETE_TASK', id }
-}
+export const setVisibilityFilter = filter => ({
+  type: 'SET_VISIBILITY_FILTER',
+  filter
+})
 
-export const toggleTask = function (id) {
-  return { type: 'TOGGLE_TASK', id }
+export const toggleTodo = id => ({
+  type: 'TOGGLE_TODO',
+  id
+})
+
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_ACTIVE: 'SHOW_ACTIVE'
 }

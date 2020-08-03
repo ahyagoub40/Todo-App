@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.scss';
-import NewTask from './Components/newTask'
-import TaskList from './Components/TaskLists'
+import AddTodo from './Containers/AddTodo';
+import TodoList from './Components/TodoList'
+import Footer from './Components/footers'
 function App() {
   return (
-    <div>
-      <div className="App">
-        <NewTask />
-        <TaskList />
-      </div>
+    <div className="App">
+      <AddTodo />
+      <TodoList />
+      <Footer />
     </div>
   );
 }
