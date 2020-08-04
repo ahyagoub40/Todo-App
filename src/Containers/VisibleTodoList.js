@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { toggleTodo, deleteTodo } from '../Store/actions'
+import '../Components/styles.scss'
 const getVisibleTodos = (todos, filter) => {
 
   const all = () => todos
@@ -16,21 +17,21 @@ const getVisibleTodos = (todos, filter) => {
 }
 const TodoList = ({ todos, toggleTodo, deleteTodo }) => {
   console.log('props : ', todos)
+
+
   return (
     < ul >
       {
         todos.map(todo => (
-          <div key={todo.id}>
-            <li
+          <div key={todo.id} className="in-line">
 
+            <li style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
               onClick={() => toggleTodo(todo.id)}
-              style={{
-                textDecoration: todo.completed ? 'line-through' : 'none'
-              }}
             >
               {todo.text}
             </ li>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            <img src="images/trash.png"
+              width="20px" height="20px" alt="Delete" onClick={() => deleteTodo(todo.id)} />
           </div>
         ))
       }

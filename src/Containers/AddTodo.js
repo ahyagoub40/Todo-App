@@ -17,7 +17,7 @@ const AddTodo = ({ dispatch }) => {
         }}
       >
         <input ref={node => (input = node)} />
-        <button type="submit">Add Todo</button>
+        <input type="image" src="images/add.png" alt="Add Todo" width="20px" height="20px" />
       </form>
     </div>
   )
