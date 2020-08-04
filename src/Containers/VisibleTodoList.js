@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { toggleTodo } from '../Store/actions'
+import { toggleTodo, deleteTodo } from '../Store/actions'
 const getVisibleTodos = (todos, filter) => {
 
   const all = () => todos
@@ -14,21 +14,24 @@ const getVisibleTodos = (todos, filter) => {
   }
   return (options[filter] || options.default)()
 }
-const TodoList = ({ todos, toggleTodo }) => {
+const TodoList = ({ todos, toggleTodo, deleteTodo }) => {
   console.log('props : ', todos)
   return (
     < ul >
       {
         todos.map(todo => (
-          <li
-            key={todo.id}
-            onClick={() => toggleTodo(todo.id)}
-            style={{
-              textDecoration: todo.completed ? 'line-through' : 'none'
-            }}
-          >
-            {todo.text}
-          </ li>
+          <div key={todo.id}>
+            <li
+
+              onClick={() => toggleTodo(todo.id)}
+              style={{
+                textDecoration: todo.completed ? 'line-through' : 'none'
+              }}
+            >
+              {todo.text}
+            </ li>
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+          </div>
         ))
       }
     </ul >
@@ -39,6 +42,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id))
+  toggleTodo: id => dispatch(toggleTodo(id)),
+  deleteTodo: id => dispatch(deleteTodo(id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

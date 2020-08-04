@@ -9,9 +9,13 @@ const todos = (state = [], action) => {
   const toggle = () => (
     state.map(todo => todo.id === action.id ? { ...todo, completed: !todo.completed } : todo)
   )
+  const remove = () => (
+    state.filter(todo => todo.id !== action.id)
+  )
   const options = {
     ADD_TODO: add,
     TOGGLE_TODO: toggle,
+    DELETE_TODO: remove,
     default: () => state
   }
 
