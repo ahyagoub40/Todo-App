@@ -1,18 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { toggleTodo } from '../Store/actions'
-import { VisibilityFilters } from '../Store/actions'
 const getVisibleTodos = (todos, filter) => {
-  switch (filter) {
-    case VisibilityFilters.SHOW_ALL:
-      return todos
-    case VisibilityFilters.SHOW_COMPLETED:
-      return todos.filter(t => t.completed)
-    case VisibilityFilters.SHOW_ACTIVE:
-      return todos.filter(t => !t.completed)
-    default:
-      throw new Error('Unknown filter: ' + filter)
+
+  const all = () => todos
+  const completed = () => todos.filter(t => t.completed)
+  const active = () => todos.filter(t => !t.completed)
+  const options = {
+    SHOW_ALL: all,
+    SHOW_COMPLETED: completed,
+    SHOW_ACTIVE: active,
+    default: () => { throw new Error('Unknown filter: ' + filter) }
   }
+  return (options[filter] || options.default)()
 }
 const TodoList = ({ todos, toggleTodo }) => {
   console.log('props : ', todos)

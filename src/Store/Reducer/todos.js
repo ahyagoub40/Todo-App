@@ -1,22 +1,21 @@
 
 const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        {
-          id: action.id,
-          text: action.text,
-          completed: false
-        }
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-      )
-    default:
-      return state
+  const add = () => (
+    [
+      ...state,
+      { id: action.id, text: action.text, completed: false }
+    ]
+  )
+  const toggle = () => (
+    state.map(todo => todo.id === action.id ? { ...todo, completed: !todo.completed } : todo)
+  )
+  const options = {
+    ADD_TODO: add,
+    TOGGLE_TODO: toggle,
+    default: () => state
   }
+
+  return (options[action.type] || options.default)()
 }
 
 export default todos
