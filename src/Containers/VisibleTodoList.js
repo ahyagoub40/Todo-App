@@ -1,8 +1,7 @@
+import React from 'react'
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
-import TodoList from '../components/TodoList'
-import { VisibilityFilters } from '../actions'
-
+import { toggleTodo } from '../Store/actions'
+import { VisibilityFilters } from '../Store/actions'
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
@@ -15,7 +14,26 @@ const getVisibleTodos = (todos, filter) => {
       throw new Error('Unknown filter: ' + filter)
   }
 }
-
+const TodoList = ({ todos, toggleTodo }) => {
+  console.log('props : ', todos)
+  return (
+    < ul >
+      {
+        todos.map(todo => (
+          <li
+            key={todo.id}
+            onClick={() => toggleTodo(todo.id)}
+            style={{
+              textDecoration: todo.completed ? 'line-through' : 'none'
+            }}
+          >
+            {todo.text}
+          </ li>
+        ))
+      }
+    </ul >
+  )
+}
 const mapStateToProps = state => ({
   todos: getVisibleTodos(state.todos, state.visibilityFilter)
 })
@@ -23,5 +41,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleTodo: id => dispatch(toggleTodo(id))
 })
-
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

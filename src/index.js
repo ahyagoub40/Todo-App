@@ -6,7 +6,6 @@ import rootReducer from './Store/Reducer'
 import App from './App'
 
 const store = createStore(rootReducer)
-
 render(
   <Provider store={store}>
     <App />
