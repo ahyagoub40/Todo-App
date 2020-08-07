@@ -1,4 +1,3 @@
-
 const todos = (state = [], action) => {
   const add = () => (
     [

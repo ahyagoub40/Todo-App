@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addTodo } from '../Store/actions'
-const AddTodo = ({ dispatch }) => {
+const AddTodo = () => {
   let input
-
+  const dispatch = useDispatch()
   return (
     <div>
       <form
@@ -24,4 +24,4 @@ const AddTodo = ({ dispatch }) => {
 }
 
 
-export default connect()(AddTodo)
+export default AddTodo
